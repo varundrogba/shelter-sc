@@ -1,0 +1,51 @@
+*create different virtual environments for all apps*
+*avoid using sudo as much as possible - only use sudo if you must*
+*Install oracle jdk package. DO NOT install open-jdk*
+*have pip upgraded to latest version before beginning installation*
+
+dkobo
+
+1. Clone latest setup from git.
+2. Create virtual environment
+3. Install python 2.7-dev - dont manually install it use an installer.
+4. If you have python 3 - uninstall it and install requirements.txt from the dkobo folder.
+5. Install libxml2 libxml2-dev libxslt1-dev
+6. Install postgresql-server-dev-9.3
+7. Install nodejs-legacy
+8. Install npm and bower - these might give you problem because they are linked to nodejs. Make sure npm and bower are working before you proceed further.
+9. Run command npm install grunt-cli. Then run grunt build. If you get an error here its a problem with nodejs - completely remove nodejs and npm and then reinstall them, that should make it work.
+10. Create your database at this point and change database settings in settings.py (dont forget to change password of database) then comment .change all the lines as commented/changed in my settings.py file (will attach it with documentation).
+10. run python manage.py syncdb then makemigrations and then migrate.
+11. If it gives you an error at this point - uninstall south package and remove it from Installed_Apps - then create a new database and repeat step 10.
+12. If you get a django-auth or django-registration error. Upgrade your django-registration module, then run python manage.py migrate auth and then the steps in step 10.
+13. Run collect static.
+14. Then runserver. - You might get some version conflicts here the first time you run it. Just look at which package is generating the error then check weather that version is compatible with the django-version installed. django version must be the one specified in requirements.txt file.
+. Cheers!
+
+kobocat
+
+1. Go to the requirements folder and then run pip install -r *filename.pip* - INSTALL THE FILES IN ORDER GIVEN. If the files downgrade django-version reinstall django with the previous version.
+2. Any error you get at this point is a conflict in 3 django packages: compressor, reversion and django-registration. Just google for compatible versions of these three programs and change the versions - It should fix any installation errors.
+3. Any other errors at this point can be resolved by copying the error and searching with google - not too much of a problem.
+4. Change the common.py and default_settings.py in the onadata folder according to my files which will be attached with this documentation.
+5. Run collect static.
+6. Run syncdb, makemigratons and migrate - if any database errors check common and default-settings.py.
+7. If you have a problem with step 6, run migrate --fake-initial.
+8. Install mongo-db (DONT INSTALL THE MONGO-DB-ORG VERSION) and run the mongod service with sudo.
+9. Install celery package.
+10.Install rabbitmq server package and run the rabbitmq-server service with sudo.
+11.Install redis package and run redis-server.
+12.Run python manage.py celeryd command - If this does not work its a problem with celery or rabbitmq.
+13.Run manage.py runserver on port 8001.
+14. If you are gettings any errors at this point, restart the pc - run the amar BIG script (attached with documentation) in all open terminals and follow steps 8,10,11,12,13 and runserver for dkobo also.
+15. Cheers!
+
+enketo-express
+1. Requirements are specified in the git readme.md
+2. DO NOT REINSTALL NODEJS/NPM GRUNT CLIENT, NODE_GYP. These are already installed.
+3. Redis is also already installed.
+4. (sudo) apt-get install build-essential git libfontconfig.
+5. Clone the repository and run npm install - if you ate getting problem here its a problem with nodejs or one of its dependant packages - completely uninstall nodejs then run sudo apt-get autoremove and then reinstall nodejs-legacy.
+6. run cp config/default-config.json config/config.json
+7. run grunt build - if you get a problem here its a problem with nodejs or npm repeat step 5 and then reinstall grunt-cli.
+8. Change the cofig-json file according to mine attached with this documentation.
