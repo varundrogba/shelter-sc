@@ -38,7 +38,8 @@ kobocat
 12.Run python manage.py celeryd command - If this does not work its a problem with celery or rabbitmq.
 13.Run manage.py runserver on port 8001.
 14. If you are gettings any errors at this point, restart the pc - run the amar BIG script (attached with documentation) in all open terminals and follow steps 8,10,11,12,13 and runserver for dkobo also.
-15. Cheers!
+15. If you are gettings UI errors - ignore them. they will get resolved when you install kobocat-template.
+16. Cheers!
 
 enketo-express
 1. Requirements are specified in the git readme.md
@@ -48,4 +49,19 @@ enketo-express
 5. Clone the repository and run npm install - if you ate getting problem here its a problem with nodejs or one of its dependant packages - completely uninstall nodejs then run sudo apt-get autoremove and then reinstall nodejs-legacy.
 6. run cp config/default-config.json config/config.json
 7. run grunt build - if you get a problem here its a problem with nodejs or npm repeat step 5 and then reinstall grunt-cli.
-8. Change the cofig-json file according to mine attached with this documentation.
+8. Change the cofig-json file according to mine attached with this documentation (mainly the redis settings).
+9. run npm start
+10. If you get errors with npm - perform a clean installation of nodejs-legacy and npm
+11. If npm start is successful - try the 127.0.0.1:8005 url - it should work now :)
+
+kobocat-template
+1. Clone the repository anywhere.
+2. Once you have completed step 5 - collectstatic in kobocat a new 'static' folder will be created automatically in your kobocat installation at kobcat/onadata.
+3. Copy the contents of your kobocat-template/static folder into the onadata/static folder (overwrite).
+4. Copy the templates folder as it is into the onadata folder.
+5. Change two settings in the common.py file
+  a. #Set Debug flag
+DEBUG = (os.environ.get('DJANGO_DEBUG', 'True') == 'True')
+  b. # folder used to override templates for site specific details
+TEMPLATE_OVERRIDE_ROOT_DIR = os.path.join('..','..','kobocat-template')
+6. Cheers!
