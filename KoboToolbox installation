@@ -8,7 +8,7 @@ dkobo
 1. Clone latest setup from git.
 2. Create virtual environment
 3. Install python 2.7-dev - dont manually install it use an installer.
-4. If you have python 3 - uninstall it and install requirements.txt from the dkobo folder.
+4. If you have python 3 - uninstall it, then install all the packages listed in the readme and after that install requirements.txt from the dkobo folder.
 5. Install libxml2 libxml2-dev libxslt1-dev
 6. Install postgresql-server-dev-9.3
 7. Install nodejs-legacy
