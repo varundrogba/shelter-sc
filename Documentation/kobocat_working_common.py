@@ -29,6 +29,10 @@ PROJECT_ROOT= os.path.abspath(os.path.join(ONADATA_DIR, '..'))
 
 PRINT_EXCEPTION = False
 
+#Set Debug flag
+DEBUG = (os.environ.get('DJANGO_DEBUG', 'True') == 'True')
+
+#Set secret key
 SECRET_KEY = 'mlfs33^s1l4xf6a36$0#j%dd*sisfoi&)&4s-v=91#^l01v)*j'
 
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'templated_email/'
@@ -78,14 +82,17 @@ MEDIA_URL = 'http://localhost:8000/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(ONADATA_DIR, 'static')
-
+print "/////////////////////"
+print STATIC_ROOT
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+
 # Enketo URL.
 # Configurable settings.
-ENKETO_URL = os.environ.get('ENKETO_URL', 'https://enketo.kobotoolbox.org')
+TESTING_MODE=""
+ENKETO_URL = os.environ.get('ENKETO_URL', 'http://127.0.0.1:8005')
 ENKETO_URL= ENKETO_URL.rstrip('/')
 ENKETO_API_TOKEN = os.environ.get('ENKETO_API_TOKEN', 'enketorules')
 ENKETO_VERSION= os.environ.get('ENKETO_VERSION', 'Legacy').lower()
@@ -113,7 +120,7 @@ ENKETO_PREVIEW_URL = ENKETO_URL + ENKETO_API_ENDPOINT_PREVIEW
 ENKETO_API_INSTANCE_IFRAME_URL = ENKETO_URL + ENKETO_API_ROOT + ENKETO_API_ENDPOINT_INSTANCE_IFRAME
 
 # specifically for site urls sent to enketo for form retrieval
-ENKETO_PROTOCOL = os.environ.get('ENKETO_PROTOCOL', 'https')
+ENKETO_PROTOCOL = os.environ.get('ENKETO_PROTOCOL', 'http')
 
 # Login URLs
 LOGIN_URL = '/accounts/login/'
@@ -126,11 +133,13 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+   # os.path.join(ONADATA_DIR, 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-
+print "/////////////////////"
+print STATICFILES_DIRS
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -185,13 +194,14 @@ USE_TZ = True
 
 
 TEMPLATE_DIRS = (
-    os.path.join(ONADATA_DIR, 'libs/templates'),
+    os.path.join(ONADATA_DIR, 'templates'),
     # Put strings here, like "/home/html/django_templates"
     # or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-
+print "**********************"
+print TEMPLATE_DIRS
 # needed by guardian
 ANONYMOUS_USER_ID = -1
 
@@ -435,7 +445,7 @@ RECAPTCHA_PUBLIC_KEY = '6Ld52OMSAAAAAJJ4W-0TFDTgbznnWWFf0XuOSaB6'
 
 # specify the root folder which may contain a templates folder and a static
 # folder used to override templates for site specific details
-TEMPLATE_OVERRIDE_ROOT_DIR = None
+TEMPLATE_OVERRIDE_ROOT_DIR = os.path.join('..','..','kobocat-template')
 
 # Use 1 or 0 for multiple selects instead of True or False for csv, xls exports
 BINARY_SELECT_MULTIPLES = False
@@ -444,7 +454,7 @@ BINARY_SELECT_MULTIPLES = False
 NA_REP = 'n/a'
 
 # Set wsgi url scheme to HTTPS
-os.environ['wsgi.url_scheme'] = 'https'
+os.environ['wsgi.url_scheme'] = 'http'
 
 SUPPORTED_MEDIA_UPLOAD_TYPES = [
     'image/jpeg',
