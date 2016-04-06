@@ -2,6 +2,7 @@
 *avoid using sudo as much as possible - only use sudo if you must*
 *Install oracle jdk package. DO NOT install open-jdk*
 *have pip upgraded to latest version before beginning installation*
+*change all urls to 'http' from 'https'*
 
 dkobo
 
