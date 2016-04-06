@@ -1,2 +1,2 @@
 # shelter-sc
-common documentation
+common documentation, setup instructions and development code
